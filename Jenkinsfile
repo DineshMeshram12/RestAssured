@@ -20,7 +20,7 @@ pipeline {
 	
 	post {
 		always{
-			echo 'build completed'
+			junit 'target/surefire-reports/*.xml'
 		}
 		
 		success {
