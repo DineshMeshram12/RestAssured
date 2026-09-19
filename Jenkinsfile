@@ -4,16 +4,9 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Get Request Test') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/DineshMeshram12/RestAssured.git'
-            }
-        }
-
-        stage('Build and Test') {
-            steps {
-                bat 'mvn clean test'
+                bat 'mvn clean test -Dtest=GetRequest'
             }
         }
     }
@@ -21,15 +14,15 @@ pipeline {
     post {
 
         always {
-            echo 'Build completed'
+            junit 'test-output/junitreports/*.xml'
         }
 
         success {
-            echo 'Tests Passed!'
+            echo 'GetRequest test passed!'
         }
 
         failure {
-            echo 'Tests Failed!'
+            echo 'GetRequest test failed!'
         }
     }
 }
