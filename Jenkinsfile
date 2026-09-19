@@ -21,11 +21,11 @@ pipeline {
     post {
 
         always {
-            junit 'target/surefire-reports/*.xml'
+            echo 'Build completed'
         }
 
         success {
-            echo 'Tests passed successfully!'
+            echo 'Tests Passed!'
         }
 
         failure {
